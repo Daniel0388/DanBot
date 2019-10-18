@@ -1,13 +1,5 @@
-//	****
-//	*
-//	*
 
 //Uses Discord.js library
-
-// token = NjM0NjA0Njg0NzUyOTc3OTIw.Xak7uA.cA1OnUjRBVo4L9jshQZWt83pKAA
-// permission integer = 8
-// client ID = 634604684752977920
-//link to add bot to server = https://discordapp.com/oauth2/authorize?client_id=634604684752977920&scope=bot&permissions=0
 
 const sensitive = require("./sensitive");
 const token = sensitive.token
@@ -16,13 +8,11 @@ const Discord = require("discord.js");
 var pjson = require('./package.json');
 const client = new Discord.Client();
 
-//const token = "NjM0NjA0Njg0NzUyOTc3OTIw.Xak7uA.cA1OnUjRBVo4L9jshQZWt83pKAA";
-
 const PREFIX = '$'
 
 //prints to cl that the bot is functioning
 client.on("ready", () => {
-	botName = "DanBot";
+	botName = pjson.name;
 	console.log("Logged in as " + botName);
 });
 	
@@ -41,8 +31,14 @@ client.on('message', message => {
 			//message.reply("eggs"); //reply will @ the user that called it
 			message.channel.send("eggs"); //send does not @ users
 			break;
-		case "website":
-			message.channel.send("https://twitter.com/dandan1496");
+		case "dev":
+			if (args[1] === "twitter") {
+				message.channel.send("https://twitter.com/dandan1496");
+			} else if (args[1] === "github") {
+				message.channel.send("https://github.com/Daniel0388/DanBot");
+			} else {
+				message.channel.send("Invalid argument");
+			};
 			break;
 		case "info":
 			if (args[1] === "version") {
